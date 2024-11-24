@@ -9,7 +9,7 @@ import {EmitirEstadoService} from "./emitir-estado.service";
             name: 'semaforos-token',
             transport: Transport.RMQ,
             options: {
-              urls: ['amqp://casarosita.sytes.net:5672'],
+              urls: ['amqp://localhost:5672'],
               queue: 'semaforos',
               queueOptions: {
                 durable: true

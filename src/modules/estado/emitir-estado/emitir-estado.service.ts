@@ -23,8 +23,8 @@ export class EmitirEstadoService implements OnModuleInit{
 
     enviarEstado(): string {
         console.log("si entra al servicio de emitir");
-        this.rabbitClient.emit('semaforo.crear', Semaforo.getInstance());
-        return 'Evento enviado';
+        this.rabbitClient.emit('semaforo.actualizar', Semaforo.getInstance());
+        return 'Estado enviado';
     }
         
 }
