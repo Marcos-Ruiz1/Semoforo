@@ -9,7 +9,7 @@ export class EmitirEstadoService implements OnModuleInit{
     constructor(
         @Inject('semaforos-token') private readonly rabbitClient: ClientProxy,
     ) {}
-
+    
     onModuleInit() {
         
         Semaforo.getInstance().setId(process.env.ID_SEMAFORO);
@@ -17,13 +17,13 @@ export class EmitirEstadoService implements OnModuleInit{
         Semaforo.getInstance().setPosiciony(Number(process.env.POSICIONY));
         Semaforo.getInstance().setEstado(ESTADOS_SEMAFORO[process.env.ESTADO]);
         console.log(Semaforo.getInstance());
-        this.rabbitClient.emit(process.env.ID_SEMAFORO, Semaforo.getInstance());
+        this.rabbitClient.emit("semaforo.crear", Semaforo.getInstance());
     }
     
 
-    enviarEstado(data: Semaforo): string {
-    
-        this.rabbitClient.emit(data.getId(), data);
+    enviarEstado(): string {
+        console.log("si entra al servicio de emitir");
+        this.rabbitClient.emit('semaforo.crear', Semaforo.getInstance());
         return 'Evento enviado';
     }
         

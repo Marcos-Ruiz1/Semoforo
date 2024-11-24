@@ -3,15 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import {EmitirEstado} from './modules/estado/emitir-estado/emitir-estado.module'
-@Module({
-  imports: [ConfigModule.forRoot({
+import {ConsumirEstado} from './modules/estado/consumir-estado/consumir-estado.module';
 
-    isGlobal: true
+@Module({
+  imports: [
     
-  }),
-    EmitirEstado
+    EmitirEstado,
+    ConsumirEstado
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

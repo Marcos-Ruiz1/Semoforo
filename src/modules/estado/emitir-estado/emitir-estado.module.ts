@@ -20,5 +20,6 @@ import {EmitirEstadoService} from "./emitir-estado.service";
       ],
     controllers: [],
     providers: [EmitirEstadoService],
+    exports: [EmitirEstadoService, ClientsModule]
   })
   export class EmitirEstado {}
