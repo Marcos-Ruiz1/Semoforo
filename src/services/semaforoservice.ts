@@ -17,10 +17,9 @@ export function emitirEstado(error, channel, isFirstTime) {
     channel.assertQueue('semaforos.informacion', {
         durable: false,
         autoDelete: true,
-        
     });
 
-    if(isFirstTime === true){
+    if(isFirstTime){
         comandoaccionar = "crear";
         crearSemaforo();
     }else{
@@ -50,7 +49,6 @@ export function consumirEstado(error, channel){
   
     
     channel.consume(process.env.ID_SEMAFORO, function(data) {
-        
         actualizarSemaforo(data);
         emitirEstado(error, channel, false);
     }, {
@@ -69,8 +67,8 @@ export function crearSemaforo(){
 
 export function actualizarSemaforo(data) {
     const datastring = data.content.toString();
-    const semaforo = JSON.parse(datastring);
-    console.log("semaforo recibido: ", semaforo.data.estado);
-    Semaforo.getInstance().setEstado(ESTADOS_SEMAFORO[semaforo.data.estado]);
+    const semaforo: Semaforo = JSON.parse(datastring);
+    console.log("semaforo recibido: ", semaforo);
+    // Semaforo.getInstance().setEstado(ESTADOS_SEMAFORO[semaforo.g]);
 }
 
