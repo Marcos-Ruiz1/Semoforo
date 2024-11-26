@@ -2,10 +2,10 @@ import { ESTADOS_SEMAFORO } from "./ESTADOS_SEMAFORO";
 
 export class Semaforo{
 
-    private id : string;
-    private posicionx: number;
-    private posiciony: number;
-    private estado : ESTADOS_SEMAFORO;
+    public id : string;
+    public posicionx: number;
+    public posiciony: number;
+    public estado : ESTADOS_SEMAFORO;
     private static  semaforoInstance: Semaforo;
 
     private constructor (){
@@ -13,10 +13,10 @@ export class Semaforo{
     }
 
     public static getInstance(): Semaforo{
-        if(this.semaforoInstance == null){
-            this.semaforoInstance = new Semaforo();
+        if(Semaforo.semaforoInstance == undefined){
+            Semaforo.semaforoInstance = new Semaforo();
         }
-        return this.semaforoInstance;
+        return Semaforo.semaforoInstance;
     }
     
     getId(): string{

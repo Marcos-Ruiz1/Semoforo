@@ -50,7 +50,6 @@ export function consumirEstado(error, channel){
     
     channel.consume(process.env.ID_SEMAFORO, function(data) {
         actualizarSemaforo(data);
-        emitirEstado(error, channel, false);
     }, {
         noAck: true
     });
@@ -69,6 +68,6 @@ export function actualizarSemaforo(data) {
     const datastring = data.content.toString();
     const semaforo: Semaforo = JSON.parse(datastring);
     console.log("semaforo recibido: ", semaforo);
-    // Semaforo.getInstance().setEstado(ESTADOS_SEMAFORO[semaforo.g]);
+    Semaforo.getInstance().setEstado(semaforo.estado);
 }
 
